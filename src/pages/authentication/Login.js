@@ -6,7 +6,7 @@ import near from "../../assets/img/near.png";
 
 function Login() {
   return (
-    <div className="relative  min-h-screen overflow-hidden bg-[#F2F2F2]">
+    <div className="relative  min-h-screen overflow-hidden bg-[#E5E5E5]">
       <div className="w-full flex flex-col ml-8 mt-4">
         <img src={logo} alt="" className="w-[200px] h-[70px]" />
         <p className="uppercase font-robotoMono text-left text-[4vh] ml-7 font-semibold">
