@@ -19,6 +19,8 @@
         "endOfLine": "auto"
       }
     ],
+    "no-console": "off",
+    "no-alert": "off",
     "react/prop-types": "off",
     "react/destructuring-assignment": [0, "ignore"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],

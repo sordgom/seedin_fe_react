@@ -1,8 +1,17 @@
-import React from "react";
-
+import React, { useState } from "react";
 import bg from "../../assets/img/globe.png";
 
 function EmailLogin() {
+  const [email, setEmail] = useState("");
+
+  const handleChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const login = () => {
+    alert("Login with " + email);
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <div
@@ -21,13 +30,16 @@ function EmailLogin() {
                 type="text"
                 className="bg-[#DAFF3E]  px-4 py-3 w-[300px] mb-4 rounded-lg"
                 placeholder="Email"
+                onChange={handleChange}
               />
 
-              <input
-                type="password"
+              <button
+                type="button"
                 className="bg-[#DAFF3E]  px-4 py-3 w-[300px] mb-4 rounded-lg"
-                placeholder="Password"
-              />
+                onClick={login}
+              >
+                Login
+              </button>
             </div>
           </div>
         </div>

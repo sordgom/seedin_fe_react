@@ -1,0 +1,1 @@
+docker build -t sotcsa/seedin_fe .
