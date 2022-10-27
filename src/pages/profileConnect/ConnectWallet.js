@@ -6,14 +6,14 @@ function Wallet() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <div
-        className="w-full h-full fixed mt-[5rem]"
+        className="w-full h-full fixed mt-[12rem]"
         style={{
           background: `url(${bg}) no-repeat bottom`,
           backgroundSize: "cover",
           backgroundOrigin: "content-box",
         }}
       >
-        <div className="flex flex-col justify-center items-center-center text-[#DAFF3E] font-robotoMono">
+        <div className="flex flex-col justify-center items-center-center text-[#DAFF3E] font-robotoMono -mt-[10%]">
           <p className="text-[5vh] font-bold">WELCOME TO WEB3_CAREER HUB</p>
           <div className="w-[15%] pt-[5rem] m-auto">
             <p className="text-[4vh] font-bold text-center uppercase font-robotoMono">

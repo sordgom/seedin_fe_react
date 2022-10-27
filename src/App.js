@@ -10,14 +10,16 @@ import ProfileDisplay from "./pages/ProfileDisplay/IndexProfileDisplay";
 import Wallet from "./pages/profileConnect/ConnectWallet";
 import IssueEndors from "./pages/profileConnect/IssueEndors";
 import MintSuccess from "./pages/profileConnect/MintSuccess";
+import EmailLogin from "./pages/authentication/EmailLogin";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/" element={<ProfileForm />} />
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/emailogin" element={<EmailLogin />} />
+        <Route exact path="/profileForm" element={<ProfileForm />} />
         <Route exact path="/displayprofile" element={<ProfileDisplay />} />
         <Route exact path="/wallet" element={<Wallet />} />
         <Route exact path="/issue" element={<IssueEndors />} />
