@@ -6,18 +6,18 @@ import Skills from "./skills";
 
 function IndexProfileDisplay() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#DAFF3E]">
-      <form>
+    <form>
+      <div className="relative min-h-screen overflow-x-hidden p-[2rem] bg-[#DAFF3E]">
         <div>
           <div>
             <Basicdetails />
             <Socialmedia />
-            <JobListing />
             <Skills />
+            <JobListing />
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
 
