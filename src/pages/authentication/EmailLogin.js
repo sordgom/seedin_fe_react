@@ -9,7 +9,20 @@ function EmailLogin() {
   };
 
   const login = () => {
-    alert("Login with " + email);
+    fetch("http://localhost:8080/auth/email", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
