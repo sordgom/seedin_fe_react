@@ -10,7 +10,7 @@ function NotFound() {
           href="/"
           className="px-6 py-3 rounded-md text-white hover:shadow-xl bg-primary"
         >
-          Go Home
+          Back to MainPage
         </a>
       </div>
     </div>

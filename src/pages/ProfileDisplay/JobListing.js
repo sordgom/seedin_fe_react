@@ -12,26 +12,28 @@ function JobListing() {
             <div className="mb-2 text-left px-[6rem]">
               <div className="flex flex-row justify-between">
                 <div className="flex flex-col">
-                  <div className="text-2xl">
+                  <div className="text-[40px]">
                     <b>JOB LISTING</b>
                   </div>
                 </div>
 
-                <div className="flex flex-col">
-                  <div className="px-3">
+                <div className="flex flex-row">
+                  <div className="pr-4">
                     <button
                       type="button"
                       className="bg-white border-solid border-2 border-black text-[#000000] px-5 py-1 rounded-full font-bold"
                     >
-                      List a Job
+                      <a href="/listjobform">List a Job</a>
                     </button>
                   </div>
-                  <button
-                    type="button"
-                    className="bg-black border-2 border-black text-[#DAFF3E] px-5 py-1 rounded-full"
-                  >
-                    Manage
-                  </button>
+                  <div className="">
+                    <button
+                      type="button"
+                      className="bg-black border-solid border-2 border-black text-[#DAFF3E] px-5 py-1 rounded-full font-bold"
+                    >
+                      Manage
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -40,7 +42,7 @@ function JobListing() {
               {/* First Box have CONTENT 1 */}
 
               <div className="flex flex-col px-4">
-                <div className="text-left text-base block px-7 py-6 mt-4 text-gray-700 bg-white rounded-[20px] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                <div className="text-left text-base block px-7 py-6 mt-4 bg-white rounded-[20px] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
                   <div className="flex flex-row justify justify-between">
                     <div className="flex flex-col">
                       <div>Maximoz Team</div>
@@ -103,7 +105,7 @@ function JobListing() {
 
               {/* CONTENT 2 */}
               <div className="flex flex-col px-4">
-                <div className="text-left text-base block px-7 py-6 mt-4 text-gray-700 bg-white rounded-[20px] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                <div className="text-left text-base block px-7 py-6 mt-4  bg-white rounded-[20px] focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
                   <div className="flex flex-row justify justify-between">
                     <div className="flex flex-col">
                       <div>Maximoz Team</div>

@@ -10,13 +10,13 @@ function Socialmedia() {
         <form>
           <div className="flex flex-row justify-center pb-[2rem]">
             <div>
-              <img src={twitter} alt="" className="w-[30px] h-[30px]" />
+              <img src={twitter} alt="" className="w-[50px] h-[50px]" />
             </div>
             <div>
-              <img src={github} alt="" className="w-[30px] h-[30px]" />
+              <img src={github} alt="" className="w-[50px] h-[50px]" />
             </div>
             <div>
-              <img src={website} alt="" className="w-[30px] h-[30px]" />
+              <img src={website} alt="" className="w-[50px] h-[50px]" />
             </div>
           </div>
 
