@@ -9,7 +9,7 @@ function Login() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <div
-        className="w-full h-full fixed mt-[12em]"
+        className="w-full h-full fixed mt-[15em]"
         style={{
           background: `url(${bg}) no-repeat bottom`,
           backgroundSize: "cover",
@@ -24,7 +24,7 @@ function Login() {
                 <Link to="/emailogin">
                   <button
                     type="button"
-                    className="bg-[#DAFF3E]  px-6 py-3 w-[230px] mb-4 rounded-2xl"
+                    className="bg-[#DAFF3E] px-6 py-3 w-[230px] mb-4 rounded-2xl"
                   >
                     <div className="flex justify-between">
                       <div className="uppercase font-bold text-[3vh] text-black">
@@ -81,7 +81,7 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className="text-[#DAFF3E] text-xs mt-14 w-full">
+          <div className="text-[#DAFF3E] text-xs mt-5 w-full">
             By signing in, you are agree to our terms of services
           </div>
 

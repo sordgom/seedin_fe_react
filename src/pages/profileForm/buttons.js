@@ -30,7 +30,7 @@ function Buttons() {
           type="button"
           className="bg-transparent border-solid border-2 border-black text-[#000000] px-14 py-3 rounded-lg font-bold"
         >
-          <Link to="/displayprofile">PREVIEW</Link>
+          <Link to="/profiledisplay">PREVIEW</Link>
         </button>
       </div>
     </div>

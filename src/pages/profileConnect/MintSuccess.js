@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import bg from "../../assets/img/globe2.png";
 
 function MintSuccess() {
@@ -18,12 +19,14 @@ function MintSuccess() {
               Minting is Successful!
             </div>
             <div className="mt-[10rem]">
-              <button
-                type="button"
-                className="bg-black px-4 py-2 rounded-full font-bold text-[#DAFF3E]"
-              >
-                Back To Your Profile
-              </button>
+              <Link to="/profiledisplay">
+                <button
+                  type="button"
+                  className="bg-black px-4 py-2 rounded-full font-bold text-[#DAFF3E]"
+                >
+                  Back To Your Profile
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -24,6 +24,9 @@ module.exports = {
         "2xl": { min: "1536px" }, // Extra large screens, TV
       },
     },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 };

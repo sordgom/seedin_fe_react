@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import bg from "../../assets/img/globe2.png";
 
 function IssueEndors() {
@@ -44,12 +45,14 @@ function IssueEndors() {
                   />
                 </div>
                 <div className="mt-20">
-                  <button
-                    type="button"
-                    className="bg-white px-4 py-2 rounded-full font-bold"
-                  >
-                    Mint and Transfer
-                  </button>
+                  <Link to="/mintSuccess">
+                    <button
+                      type="button"
+                      className="bg-white px-4 py-2 rounded-full font-bold"
+                    >
+                      Mint and Transfer
+                    </button>
+                  </Link>
                 </div>
               </form>
             </div>
