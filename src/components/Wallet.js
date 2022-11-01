@@ -83,14 +83,12 @@ export class Wallet {
 
   // Call a method that changes the contract's state
   async callMethod({ contractId, method, args = {}, gas = THIRTY_TGAS, deposit = NO_DEPOSIT }) {
-    console.log(this.wallet == undefined)
     if(this.wallet == undefined){
-      console.log('yes it happens')
         this.wallet = await this.walletSelector.wallet();
         this.accountId = this.walletSelector.store.getState().accounts[0].accountId;
     }
     // Sign a transaction with the "FunctionCall" action
-    return await this.wallet.signAndSendTransaction({
+    const result = await this.wallet.signAndSendTransaction({
       signerId: this.accountId,
       receiverId: contractId,
       actions: [
@@ -105,12 +103,14 @@ export class Wallet {
         },
       ],
     });
+
+    return providers.getTransactionLastResult(result);
   }
 
   // Get transaction result from the network
   async getTransactionResult(txhash) {
-    const { network } = this.walletSelector.options;
-    const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
+    const { network } = 'testnet';
+    const provider = new providers.JsonRpcProvider({ url: 'https://rpc.testnet.near.org' });
 
     // Retrieve transaction result from the network
     const transaction = await provider.txStatus(txhash, 'unnused');

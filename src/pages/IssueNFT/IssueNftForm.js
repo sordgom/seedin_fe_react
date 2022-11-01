@@ -5,8 +5,13 @@ import { GloryBadge } from "../../contracts/glory-badge";
 import { Wallet } from "../../components/Wallet";
 import { useNavigate } from 'react-router-dom';
 
-//TODO GENERATE TOKEN IDS
-//TODO Error handling / navigate to nftlink in case of success 
+ 
+/*TODO
+* GENERATE TOKEN IDS
+* Error handling / navigate to nftlink in case of success 
+* Check providers.getTransactionLastResult(transaction) in Wallet.js and maybe do it manually?
+* I need to figure out why's the wallet not loading up correctly in both pages
+*/
 
 function IssueNftForm() {
 
@@ -15,11 +20,32 @@ function IssueNftForm() {
   const contract = new GloryBadge({contractId: "sordgom_2_nft.testnet", walletToUse: wallet });
 
   const [accountId, setAccountId] = useState();
+  const [log, setLog] = useState();
+
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [artwork, setArtwork] = useState();
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
+
+  // Check if there is a transaction hash in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const txhash = urlParams.get("transactionHashes")
+
+    async function checkTxh() {
+      if(txhash !== null){
+        // Get result from the transactions
+        setLog( await wallet.getTransactionResult(txhash))
+      }
+    }
+
+    async function startWallet() {
+      const isSignedIn = await wallet.startUp()
+      if(!isSignedIn){
+        await wallet.signIn();
+      }
+      setAccountId(wallet.accountId);
+    }
 
   //Query example
   //{"token_id": "token-1", "metadata": {"title": "TEST-NFT", "description": "This is a drill", "media": "https://media.giphy.com/media/6SZ5iwN70lJyOdLZZH/giphy.gif"}, "receiver_id": "'$NFT_CONTRACT_ID'"}
@@ -38,13 +64,15 @@ function IssueNftForm() {
             issued_at : new Date().toISOString() ,
             expires_at : endDate ,
             starts_at : startDate ,
-            extra: "1st"
+            extra: "1" //This is supposed to reference who's minting (1 for owner, 2 for claimers  or something)
         },  
         accountId
       ).then((res) => {
-        console.log(res);
-      });
-      navigate('/nftlink');
+        console.log(res)
+      })
+      if(!!log){ 
+        navigate('/nftlink');
+      }
     }catch(error){
       console.log(error)
       alert(`Er`)
@@ -52,19 +80,9 @@ function IssueNftForm() {
   }
 
   useEffect(()=> {
-    async function start() {
-      const isSignedIn = await wallet.startUp()
-      if(!isSignedIn){
-        await wallet.signIn();
-      }
-      setAccountId(wallet.accountId);
-    }
-    start();
+    startWallet();
+    checkTxh();
   },[])
-
-  useEffect(()=> {
-    console.log({name,description,artwork,startDate,endDate})
-  },[name,description,artwork,startDate,endDate])
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
