@@ -4,30 +4,30 @@ import bg from "../../assets/img/globe2.png";
 import { Endorsement } from "../../contracts/endorsement";
 import { Wallet } from "../../components/Wallet";
 import { useNavigate } from 'react-router-dom';
+
+//TODO GENERATE TOKEN IDS
+
+
 function IssueEndors() {
   const navigate = useNavigate();
 
   const wallet = new Wallet({ createAccessKeyFor: "sordgom_1_endorsement.testnet" });
-  const endorsement = new Endorsement({contractId: "sordgom_1_endorsement.testnet", walletToUse: wallet });
+  const contract = new Endorsement({contractId: "sordgom_1_endorsement.testnet", walletToUse: wallet });
 
   const [receiverId, setReceiverId] = React.useState();
   const [text, setText] = React.useState();
   
- 
-  function handleSubmit() {
-    endorse();
-
-  }
-
+  //Query Example
   //{"token_id": "token-1", "metadata": {"title": "TEST-ENDORSEMENT", "description": "This is a drill", "text": "This is the first endorsement test"}, "receiver_id": "'$NFT_CONTRACT_ID'"}
-  async function endorse(){
+  async function handleSubmit(){
     try{
       if(!receiverId || !text) {
         console.log('Somethings missing');
         return ; 
       }
-      await endorsement.nft_mint(
-        "token-4", // argument name and value - pass empty object if no args required
+      // argument name and value - pass empty object if no args required
+      await contract.nft_mint(
+        "token-4", 
         {
             title: "TEST-ENDORSEMENT",
             description: "This is a drill",

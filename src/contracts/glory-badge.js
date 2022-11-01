@@ -4,15 +4,15 @@ export class GloryBadge {
       this.wallet = walletToUse;    
     }
     
-    async getToken() {
+    async nft_token() {
         return await this.wallet.viewMethod({ contractId: this.contractId, method: 'nft_token' });
     }
 
-    async getMetadata() {
+    async nft_metadata() {
         return await this.wallet.viewMethod({ contractId: this.contractId, method: 'nft_metadata' });
     }
 
-    async mintNft(tokenId, Metadata, receiverId) {
+    async nft_mint(tokenId, Metadata, receiverId) {
         return await this.wallet.callMethod({ contractId: this.contractId, method: 'nft_mint', args: { token_id: tokenId, metadata: Metadata, receiver_id: receiverId } });
     }
 }

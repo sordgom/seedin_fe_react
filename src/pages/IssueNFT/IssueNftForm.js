@@ -1,8 +1,71 @@
-import React from "react";
+import React, { useEffect , useState} from "react";
 import { Link } from "react-router-dom";
 import bg from "../../assets/img/globe2.png";
+import { GloryBadge } from "../../contracts/glory-badge";
+import { Wallet } from "../../components/Wallet";
+import { useNavigate } from 'react-router-dom';
+
+//TODO GENERATE TOKEN IDS
+//TODO Error handling / navigate to nftlink in case of success 
 
 function IssueNftForm() {
+
+  const navigate = useNavigate();
+  const wallet = new Wallet({ createAccessKeyFor: "sordgom_2_nft.testnet" });
+  const contract = new GloryBadge({contractId: "sordgom_2_nft.testnet", walletToUse: wallet });
+
+  const [accountId, setAccountId] = useState();
+  const [name, setName] = useState();
+  const [description, setDescription] = useState();
+  const [artwork, setArtwork] = useState();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+  //Query example
+  //{"token_id": "token-1", "metadata": {"title": "TEST-NFT", "description": "This is a drill", "media": "https://media.giphy.com/media/6SZ5iwN70lJyOdLZZH/giphy.gif"}, "receiver_id": "'$NFT_CONTRACT_ID'"}
+  async function handleSubmit(){
+    try{
+      // if(!name || !artwork || !startDate || !endDate) {
+      //   console.log('Somethings missing');
+      //   return ; 
+      // }
+      await contract.nft_mint(
+      "token-12",
+        {
+            title: name,
+            description: description,
+            media : "https://media.giphy.com/media/6SZ5iwN70lJyOdLZZH/giphy.gif",
+            issued_at : new Date().toISOString() ,
+            expires_at : endDate ,
+            starts_at : startDate ,
+            extra: "1st"
+        },  
+        accountId
+      ).then((res) => {
+        console.log(res);
+      });
+      navigate('/nftlink');
+    }catch(error){
+      console.log(error)
+      alert(`Er`)
+    }
+  }
+
+  useEffect(()=> {
+    async function start() {
+      const isSignedIn = await wallet.startUp()
+      if(!isSignedIn){
+        await wallet.signIn();
+      }
+      setAccountId(wallet.accountId);
+    }
+    start();
+  },[])
+
+  useEffect(()=> {
+    console.log({name,description,artwork,startDate,endDate})
+  },[name,description,artwork,startDate,endDate])
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
       <div
@@ -29,6 +92,7 @@ function IssueNftForm() {
                   </label>
                   <input
                     type=""
+                    onChange={(e) => setName(e.target.value)}
                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
@@ -41,6 +105,7 @@ function IssueNftForm() {
                   </label>
                   <input
                     type=""
+                    onChange={(e) => setDescription(e.target.value)}
                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
@@ -52,7 +117,8 @@ function IssueNftForm() {
                     Artwork
                   </label>
                   <input
-                    type="file"
+                    type=""//Changed "file" to "" temporarily 
+                    onChange={(e) => setArtwork(e.target.value)}
                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                   <div className="text-sm">
@@ -69,7 +135,8 @@ function IssueNftForm() {
                       Start Date
                     </label>
                     <input
-                      type="text"
+                      type="date"
+                      onChange={(e) => setStartDate(e.target.value)}
                       className=" block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -81,7 +148,8 @@ function IssueNftForm() {
                       Expiry Date
                     </label>
                     <input
-                      type="text"
+                      type="date"
+                      onChange={(e) => setEndDate(e.target.value)}
                       className=" block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -89,9 +157,10 @@ function IssueNftForm() {
                 <div className="mt-8">
                   <button
                     type="button"
+                    onClick={handleSubmit}
                     className="bg-white px-4 py-1 rounded-full font-bold  text-gray-700 border  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-60"
                   >
-                    <Link to="/nftlink">SUBMIT</Link>
+                    {/* <Link to="/nftlink">SUBMIT</Link> */}
                   </button>
                 </div>
               </form>

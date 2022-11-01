@@ -23,6 +23,7 @@ export class Wallet {
   wallet;
   network;
   createAccessKeyFor;
+  accountId;
 
   constructor({ createAccessKeyFor = undefined, network = 'testnet' }) {
     // Login to a wallet passing a contractId will create a local
@@ -82,8 +83,9 @@ export class Wallet {
 
   // Call a method that changes the contract's state
   async callMethod({ contractId, method, args = {}, gas = THIRTY_TGAS, deposit = NO_DEPOSIT }) {
-    console.log(this.wallet)
-    if(!this.wallet){
+    console.log(this.wallet == undefined)
+    if(this.wallet == undefined){
+      console.log('yes it happens')
         this.wallet = await this.walletSelector.wallet();
         this.accountId = this.walletSelector.store.getState().accounts[0].accountId;
     }
